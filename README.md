@@ -124,68 +124,21 @@ CUSTOMER sees Book Now → – Can book – Toast Room 1 Booked Successfully! �
 
 🛠 Technologies Used
 
-Technology
-
-Version
-
-Purpose
-
-Java
-
-21.0.10
-
-Backend language
-
-Spring Boot
-
-3.2.5
-
-REST APIs, Embedded Tomcat
-
-Spring Data JPA / Hibernate
-
-6.4.4.Final
-
-ORM – Room, User, Booking
-
-Spring Security
-
-6.2.4
-
-Bypass – permitAll() – No JWT filter
-
-H2 Database
-
-2.2.x
-
-In-memory / file DB – No setup – h2-console enabled
-
-PasswordEncoder
-
-BCrypt
-
-Password hashing
-
-Frontend
-
-Single static/index.html – Vanilla JS
-
-No React build – Bypass full stack
-
-CSS
-
-Pure CSS – Outfit font – Gold #F59E0B + Black #0A0A0B – Glassmorphism
-
-Premium dark theme
-
-Maven
-
-3.9+
-
-Build
+| Technology | Version | Purpose |
+|---|---|---|
+| Java | 21.0.10 | Backend language |
+| Spring Boot | 3.2.5 | REST APIs, Embedded Tomcat |
+| Spring Data JPA / Hibernate | 6.4.4.Final | ORM – Room, User, Booking |
+| Spring Security | 6.2.4 | Bypass – permitAll() – No JWT filter |
+| H2 Database | 2.2.x | In-memory / file DB – No setup – h2-console enabled |
+| PasswordEncoder | BCrypt | Password hashing |
+| Frontend | Single static/index.html – Vanilla JS | No React build – Bypass full stack |
+| CSS | Pure CSS – Outfit font – Gold #F59E0B + Black #0A0A0B – Glassmorphism | Premium dark theme |
+| Maven | 3.9+ | Build |
 
 📂 Project Structure
 
+```text
 68-booking-system/
 │
 ├── src/main/java/com/booking/
@@ -228,18 +181,22 @@ Build
 ├── pom.xml – spring-boot-starter-web, data-jpa, security, H2
 ├── .gitignore – target/, data/, .idea/, *.db
 └── README.md
+```
 
 ▶ How to Run
 
 1. Clone
 
+```bash
 git clone https://github.com/raviteja-dev950/68-booking-system.git
 cd 68-booking-system
+```
 
 2. Application Properties
 
 Current (in-memory – wipes on restart):
 
+```properties
 server.port=9191
 spring.datasource.url=jdbc:h2:mem:bookingdb
 spring.datasource.driver-class-name=org.h2.Driver
@@ -249,16 +206,21 @@ spring.jpa.hibernate.ddl-auto=create
 spring.jpa.show-sql=true
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
+```
 
 For persistence (recommended for demo):
 
+```properties
 spring.jpa.hibernate.ddl-auto=update
 spring.datasource.url=jdbc:h2:file:./data/bookingdb
+```
 
 3. Run – Single Command
 
+```bash
 mvn clean install -DskipTests
 mvn spring-boot:run
+```
 
 Open:
 
@@ -272,6 +234,7 @@ http://localhost:9191/h2-console – H2 console – JDBC URL jdbc:h2:mem – Use
 
 4. Frontend Logic (Inside index.html)
 
+```javascript
 // Register
 fetch('/api/auth/register', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name,email,password,role})})
 
@@ -288,9 +251,11 @@ fetch('/api/bookings', {method:'POST', body: JSON.stringify({room:{id}, user:{id
 
 // My Bookings
 fetch('/api/bookings/my/'+localStorage.getItem("email"))
+```
 
 🔄 Application Flow
 
+```text
 Browser
  │
  ▼
@@ -317,9 +282,11 @@ Spring Boot 9191 – Single JAR – permitAll
  │
  ▼
 H2 – tables: users, room, booking – Sample rooms added! on start
+```
 
 🧪 API Testing
 
+```bash
 curl http://localhost:9191/api/rooms
 
 curl -X POST http://localhost:9191/api/auth/register -H "Content-Type: application/json" -d "{\"name\":\"Vemula Leela Venkata Ravi Teja\",\"email\":\"hero20@gmail.com\",\"password\":\"1234\",\"role\":\"CUSTOMER\"}"
@@ -335,88 +302,21 @@ curl -X POST http://localhost:9191/api/bookings -H "Content-Type: application/js
 curl http://localhost:9191/api/bookings/my/hero20@gmail.com
 
 curl http://localhost:9191/api/bookings
+```
 
 📡 API Endpoints
 
-Method
-
-Endpoint
-
-Access
-
-Purpose
-
-POST
-
-/api/auth/register
-
-Public
-
-Join StayEase – CUSTOMER/ADMIN
-
-POST
-
-/api/auth/login
-
-Public
-
-Welcome Back
-
-GET
-
-/api/users/by-email?email=
-
-Public
-
-Get user id for booking FK
-
-GET
-
-/api/rooms
-
-Public
-
-Luxury stays grid
-
-POST
-
-/api/rooms
-
-Public
-
-ADMIN Add New Property
-
-DELETE
-
-/api/rooms/{id}
-
-Public
-
-ADMIN Delete
-
-POST
-
-/api/bookings
-
-Public
-
-CUSTOMER Book Now
-
-GET
-
-/api/bookings
-
-Public
-
-All bookings
-
-GET
-
-/api/bookings/my/{email}
-
-Public
-
-My Bookings modal
+| Method | Endpoint | Access | Purpose |
+|---|---|---|---|
+| POST | /api/auth/register | Public | Join StayEase – CUSTOMER/ADMIN |
+| POST | /api/auth/login | Public | Welcome Back |
+| GET | /api/users/by-email?email= | Public | Get user id for booking FK |
+| GET | /api/rooms | Public | Luxury stays grid |
+| POST | /api/rooms | Public | ADMIN Add New Property |
+| DELETE | /api/rooms/{id} | Public | ADMIN Delete |
+| POST | /api/bookings | Public | CUSTOMER Book Now |
+| GET | /api/bookings | Public | All bookings |
+| GET | /api/bookings/my/{email} | Public | My Bookings modal |
 
 🗄 Database Note – H2
 
