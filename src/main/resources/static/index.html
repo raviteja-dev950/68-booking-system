@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>StayEase.PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif}
+body{background:#0a0a0b;color:#fff;min-height:100vh}
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(1200px at 20% 10%, #1e293b, #0a0a0b)}
+.auth-card{width:420px;background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);padding:36px;border-radius:24px}
+.auth-card h2{font-size:28px;margin-bottom:8px} .auth-card p{color:#94a3b8;margin-bottom:24px;font-size:14px}
+input,select{width:100%;padding:14px 16px;margin:8px 0;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:#fff;outline:none}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,#f59e0b,#d97706);border:none;border-radius:12px;color:#000;font-weight:700;cursor:pointer;margin-top:12px}
+.link{color:#f59e0b;text-align:center;display:block;margin-top:16px;font-size:14px;cursor:pointer}
+.header{position:sticky;top:0;z-index:10;background:rgba(10,10,11,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.08);padding:18px 40px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:700} .logo span{color:#f59e0b}
+.user{color:#94a3b8;font-size:14px} .logout{background:#ef4444;color:#fff;padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-weight:600}
+.hero{padding:50px 40px 30px} .hero h1{font-size:42px;line-height:1.1} .hero h1 span{background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px;padding:0 40px 60px}
+.card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;transition:0.4s}
+.card:hover{transform:translateY(-8px);border-color:rgba(245,158,11,0.3)}
+.img-wrap{position:relative;height:220px;overflow:hidden} .img-wrap img{width:100%;height:100%;object-fit:cover}
+.price-badge{position:absolute;top:14px;right:14px;background:#0a0a0b;padding:8px 14px;border-radius:20px;font-weight:700;font-size:14px;border:1px solid rgba(255,255,255,0.15)}
+.card-body{padding:20px} .room-type{color:#f59e0b;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.room-title{font-size:20px;margin:6px 0 10px} .meta{color:#94a3b8;font-size:14px;display:flex;gap:12px;margin-bottom:14px}
+.book{width:100%;padding:12px;background:#fff;color:#000;border:none;border-radius:12px;font-weight:700;cursor:pointer}
+.adminBox{margin:30px 40px;background:rgba(255,255,255,0.04);border:1px dashed rgba(245,158,11,0.4);padding:24px;border-radius:20px}
+.adminGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.hidden{display:none}
+#msg{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#10b981;color:#fff;padding:14px 28px;border-radius:30px;font-weight:600;display:none;z-index:200}
+</style>
+</head>
+<body>
+<div id="authBox" class="auth-wrap">
+<div class="auth-card">
+<h2 id="authTitle">Welcome Back</h2>
+<p id="authSub">Login to StayEase</p>
+<div id="regFields" class="hidden">
+<input id="name" placeholder="Full Name">
+<select id="role"><option value="CUSTOMER">CUSTOMER</option><option value="ADMIN">ADMIN</option></select>
+</div>
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+<button class="btn" onclick="handleAuth()" id="authBtn">Login →</button>
+<a class="link" onclick="toggleAuth()" id="toggleLink">New here? Create account</a>
+<p id="authMsg" style="color:#ef4444;text-align:center;margin-top:12px;font-size:13px"></p>
+</div>
+</div>
+
+<div id="mainApp" class="hidden">
+<div class="header">
+<div class="logo">StayEase<span>.PRO</span> - <span id="userRole" style="font-size:14px;color:#94a3b8"></span></div>
+<div style="display:flex;align-items:center;gap:12px">
+<span class="user" id="userEmail"></span>
+<button onclick="openMyBookings()" style="background:#fff;color:#000;padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-weight:600">My Bookings</button>
+<button class="logout" onclick="logout()">Logout</button>
+</div>
+</div>
+
+<div id="adminPanel" class="hidden adminBox">
+<h3>✦ Add New Property (ADMIN)</h3>
+<div class="adminGrid">
+<input id="roomNum" placeholder="Room No">
+<input id="roomType" placeholder="Type">
+<input id="roomPrice" type="number" placeholder="Price">
+<input id="roomCap" type="number" placeholder="Capacity">
+<input id="roomAmen" placeholder="Amenities">
+<input id="roomImg" placeholder="Image URL">
+</div>
+<button class="btn" style="width:200px" onclick="addRoom()">+ Add Room</button>
+</div>
+
+<div class="hero"><h1>Curated <span>Luxury</span> Stays<br>for Modern Travellers</h1></div>
+<div id="rooms" class="grid">Loading...</div>
+</div>
+
+<!-- My Bookings Modal -->
+<div id="myBookingsModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:100;overflow:auto">
+<div style="max-width:800px;margin:60px auto;background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:32px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px"><h2>✦ My Bookings</h2><button onclick="closeMyBookings()" style="background:rgba(255,255,255,0.1);border:none;color:#fff;padding:8px 16px;border-radius:20px;cursor:pointer">✕ Close</button></div>
+<div id="myBookingsList"></div>
+</div>
+</div>
+
+<div id="msg"></div>
+<script>
+let isLogin=true;let token=localStorage.getItem("token");let role=localStorage.getItem("role");
+function toggleAuth(){isLogin=!isLogin;document.getElementById("authTitle").innerText=isLogin?"Welcome Back":"Join StayEase";document.getElementById("authSub").innerText=isLogin?"Login to your account":"Create account";document.getElementById("authBtn").innerText=isLogin?"Login →":"Create Account →";document.getElementById("toggleLink").innerText=isLogin?"New here? Create account":"Already have account? Login";document.getElementById("regFields").classList.toggle("hidden",isLogin);}
+async function handleAuth(){const email=document.getElementById("email").value;const password=document.getElementById("password").value;const url=isLogin?'/api/auth/login':'/api/auth/register';const body=isLogin?{email,password}:{name:document.getElementById("name").value,email,password,role:document.getElementById("role").value};try{const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const data=await res.json();if(data.token){localStorage.setItem("token",data.token);localStorage.setItem("role",data.role);localStorage.setItem("email",data.email);location.reload();}else{document.getElementById("authMsg").innerText="Failed";}}catch(e){document.getElementById("authMsg").innerText="Error";}}
+function logout(){localStorage.clear();location.reload();}
+function checkAuth(){if(token){document.getElementById("authBox").classList.add("hidden");document.getElementById("mainApp").classList.remove("hidden");document.getElementById("userEmail").innerText=localStorage.getItem("email");document.getElementById("userRole").innerText=role;if(role==="ADMIN")document.getElementById("adminPanel").classList.remove("hidden");loadRooms();}}
+async function loadRooms(){const res=await fetch('/api/rooms');const data=await res.json();document.getElementById('rooms').innerHTML=data.map(r=>`<div class="card"><div class="img-wrap"><img src="${r.imageUrl}"><div class="price-badge">₹${r.pricePerNight}/night</div></div><div class="card-body"><div class="room-type">${r.type} • ROOM ${r.roomNumber}</div><div class="room-title">${r.type} Suite</div><div class="meta"><span>👥 ${r.capacity} Guests</span><span>✦ ${r.amenities}</span></div><button class="book" onclick="bookRoom(${r.id},${r.pricePerNight})">${role==='ADMIN'?'Manage':'Book Now →'}</button>${role==='ADMIN'?`<button onclick="deleteRoom(${r.id})" style="margin-top:8px;width:100%;padding:10px;background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3);border-radius:10px;cursor:pointer">Delete</button>`:''}</div></div>`).join('');}
+function toast(t){let m=document.getElementById("msg");m.innerText=t;m.style.display="block";setTimeout(()=>m.style.display="none",3000);}
+async function bookRoom(id,price){
+ if(role==="ADMIN"){toast("ADMIN can't book - login as CUSTOMER");return;}
+ let email = localStorage.getItem("email");
+ let usersRes = await fetch('/api/users/by-email?email='+email);
+ let userId = 1;
+ try{ let u = await usersRes.json(); userId = u.id; }catch(e){}
+ await fetch('/api/bookings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({room:{id:id},user:{id:userId},checkIn:'2026-09-10',checkOut:'2026-09-12',guests:2,totalPrice:price})});
+ toast("Room "+id+" Booked Successfully!");
+}
+async function addRoom(){const room={roomNumber:document.getElementById("roomNum").value,type:document.getElementById("roomType").value,pricePerNight:parseFloat(document.getElementById("roomPrice").value),capacity:parseInt(document.getElementById("roomCap").value),amenities:document.getElementById("roomAmen").value,imageUrl:document.getElementById("roomImg").value||"https://images.unsplash.com/photo-1611892440504-42a792e24d32",isAvailable:true};await fetch('/api/rooms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(room)});toast("Room Added!");loadRooms();}
+async function deleteRoom(id){await fetch('/api/rooms/'+id,{method:'DELETE'});loadRooms();toast("Deleted");}
+async function openMyBookings(){let email=localStorage.getItem("email");let res=await fetch('/api/bookings/my/'+email);let data=await res.json();document.getElementById("myBookingsModal").style.display="block";if(data.length===0){document.getElementById("myBookingsList").innerHTML=`<p style="color:#64748b;text-align:center;padding:40px">No bookings yet.</p>`;}else{document.getElementById("myBookingsList").innerHTML=data.map(b=>`<div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center"><div><div style="color:#f59e0b;font-size:12px">BOOKING #${b.id} • ${b.status}</div><div style="font-size:18px;margin:6px 0">Room ${b.room?.roomNumber} - ${b.room?.type}</div><div style="color:#94a3b8;font-size:14px">📅 ${b.checkIn} → ${b.checkOut} • 👥 ${b.guests} • ₹${b.totalPrice}</div></div><div style="background:#10b981;color:#fff;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700">CONFIRMED</div></div>`).join('');}}
+function closeMyBookings(){document.getElementById("myBookingsModal").style.display="none";}
+checkAuth();
+</script>
+</body>
+</html>
