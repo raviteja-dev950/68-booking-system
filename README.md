@@ -1,4 +1,4 @@
-🏨 Project 68 – StayEase.PRO – Premium Booking System | Spring Boot + H2 + Bypass Full Stack
+# 🏨 Project 68 – StayEase.PRO – Premium Booking System | Spring Boot + H2 + Bypass Full Stack
 
 <p align="left">
 <img src="https://img.shields.io/badge/Java-21-E76F00?logo=openjdk&logoColor=white" alt="Java 21">
@@ -446,43 +446,43 @@ Verified
 
 1. Auth CUSTOMER – Join StayEase – CUSTOMER
 
-
+![Auth Customer](screenshots/demo1.png)
 
 2. Customer Dashboard – StayEase.PRO – CUSTOMER
 
-
+![Customer Dashboard](screenshots/demo2.png)
 
 3. Booking Success – Green Toast Room 1 Booked Successfully!
 
-
+![Booking Success](screenshots/demo3.png)
 
 4. My Bookings Model – BOOKING #2 • CONFIRMED
 
-
+![My Bookings](screenshots/demo4.png)
 
 5. Auth ADMIN – Join StayEase – ADMIN
 
-
+![Auth Admin](screenshots/demo5.png)
 
 6. Admin Dashboard – Add New Property – 3 Rooms
 
-
+![Admin Dashboard](screenshots/demo6.png)
 
 7. Admin Add Room Success – 4 Rooms – Room Added!
 
-
+![Admin Room Added](screenshots/demo7.png)
 
 8. Admin 6 Rooms – Role Protection
 
-
+![Admin 6 Rooms](screenshots/demo8.png)
 
 9. API /api/rooms JSON – 6 Rooms
 
-
+![API Rooms](screenshots/demo9.png)
 
 10. API /api/bookings JSON – Bookings with User and Room
 
-
+![API Bookings](screenshots/demo10.png)
 
 🎯 Learning Outcomes
 
