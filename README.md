@@ -323,7 +323,7 @@ Important: With mem + create, data wiped on restart – User not found after res
 
 ---
 
-### 4. My Bookings Modal – BOOKING #2 • CONFIRMED
+### 4. My Bookings Model – BOOKING #2 • CONFIRMED
 
 ![My Bookings Modal](screenshots/demo4.png)
 
