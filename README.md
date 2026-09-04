@@ -305,63 +305,66 @@ Important: With mem + create, data wiped on restart – User not found after res
 
 ## 📸 Screenshots – StayEase.PRO Classy Dark
 
-### 1. Auth CUSTOMER – Join StayEase – CUSTOMER – hero20@gmail.com
+### 1. Auth CUSTOMER – Join StayEase – CUSTOMER
 
-![Auth Customer](screenshots/01-auth-customer.png)
+![Auth Customer](screenshots/demo1.png)
 
 ---
 
 ### 2. Customer Dashboard – StayEase.PRO – CUSTOMER
 
-![Customer Dashboard](screenshots/02-rooms-customer.png)
+![Customer Dashboard](screenshots/demo2.png)
 
 ---
 
 ### 3. Booking Success – Green Toast Room 1 Booked Successfully!
 
-![Booking Success](screenshots/03-booked-success.png)
+![Booking Success](screenshots/demo3.png)
 
 ---
 
 ### 4. My Bookings Modal – BOOKING #2 • CONFIRMED
 
-![My Bookings Modal](screenshots/04-my-bookings-modal.png)
+![My Bookings Modal](screenshots/demo4.png)
 
 ---
 
-### 5. Auth ADMIN – Join StayEase – ADMIN – 1234@gmail.com
+### 5. Auth ADMIN – Join StayEase – ADMIN
 
-![Auth Admin](screenshots/05-auth-admin.png)
+![Auth Admin](screenshots/demo5.png)
 
 ---
 
 ### 6. Admin Dashboard – Add New Property – 3 Rooms
 
-![Admin Dashboard](screenshots/06-admin-dashboard-3-rooms.png)
+![Admin Dashboard](screenshots/demo6.png)
 
 ---
 
 ### 7. Admin Add Room Success – 4 Rooms – Room Added!
 
-![Admin Room Added](screenshots/07-admin-room-added.png)
+![Admin Room Added](screenshots/demo7.png)
 
 ---
 
 ### 8. Admin 6 Rooms – Role Protection
 
-![Admin 6 Rooms](screenshots/08-admin-6-rooms.png)
+![Admin 6 Rooms](screenshots/demo8.png)
 
 ---
 
 ### 9. API /api/rooms JSON – 6 Rooms
 
-![API Rooms](screenshots/09-api-rooms.png)
+![API Rooms](screenshots/demo9.png)
 
 ---
 
 ### 10. API /api/bookings JSON – Bookings with User and Room
 
-![API Bookings](screenshots/10-api-bookings.png)
+![API Bookings](screenshots/demo10.png)
+
+---
+
 
 ## 🎯 Learning Outcomes
 
