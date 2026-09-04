@@ -12,7 +12,7 @@
 
 ## 📖 Project Overview
 
-StayEase.PRO is Project 68 of Tier 7 – Full Stack Integration, built with Spring Boot 3.2.5, H2 Database, Spring Data JPA, Hibernate, Spring Security (Bypass Mode – permitAll) and Single File Premium Frontend served from src/main/resources/static/.
+StayEase.PRO is Project 68 of Tier 7 – Full Stack Integration, built with Spring Boot 3.2.5, H2 Database, Spring Data JPA, Hibernate, Spring Security (Bypass Mode – permitAll) and Single File Premium Frontend served from `src/main/resources/static/`.
 
 This project uses BYPASS FULL STACK architecture:
 
@@ -268,15 +268,15 @@ curl http://localhost:9191/api/bookings
 
 | Method | Endpoint | Access | Purpose |
 |---|---|---|---|
-| POST | /api/auth/register | Public | Join StayEase – CUSTOMER/ADMIN |
-| POST | /api/auth/login | Public | Welcome Back |
-| GET | /api/users/by-email?email= | Public | Get user id for booking FK |
-| GET | /api/rooms | Public | Luxury stays grid |
-| POST | /api/rooms | Public | ADMIN Add New Property |
-| DELETE | /api/rooms/{id} | Public | ADMIN Delete |
-| POST | /api/bookings | Public | CUSTOMER Book Now |
-| GET | /api/bookings | Public | All bookings |
-| GET | /api/bookings/my/{email} | Public | My Bookings modal |
+| POST | `/api/auth/register` | Public | Join StayEase – CUSTOMER/ADMIN |
+| POST | `/api/auth/login` | Public | Welcome Back |
+| GET | `/api/users/by-email?email=` | Public | Get user id for booking FK |
+| GET | `/api/rooms` | Public | Luxury stays grid |
+| POST | `/api/rooms` | Public | ADMIN Add New Property |
+| DELETE | `/api/rooms/{id}` | Public | ADMIN Delete |
+| POST | `/api/bookings` | Public | CUSTOMER Book Now |
+| GET | `/api/bookings` | Public | All bookings |
+| GET | `/api/bookings/my/{email}` | Public | My Bookings modal |
 
 ## 🗄 Database Note – H2
 
@@ -307,23 +307,61 @@ Important: With mem + create, data wiped on restart – User not found after res
 
 ### 1. Auth CUSTOMER – Join StayEase – CUSTOMER – hero20@gmail.com
 
-### 2. Customer Dashboard – StayEase.PRO - CUSTOMER – My Bookings + Logout – Curated Luxury Stays – 3 Cards ₹2500, ₹4500, ₹1500 – Book Now
+![Auth Customer](screenshots/01-auth-customer.png)
+
+---
+
+### 2. Customer Dashboard – StayEase.PRO – CUSTOMER
+
+![Customer Dashboard](screenshots/02-rooms-customer.png)
+
+---
 
 ### 3. Booking Success – Green Toast Room 1 Booked Successfully!
 
-### 4. My Bookings Modal – BOOKING #2 • CONFIRMED – Room 101 - Deluxe – 2026-09-10 → 2026-09-12 • 2 • ₹2500 – CONFIRMED badge
+![Booking Success](screenshots/03-booked-success.png)
+
+---
+
+### 4. My Bookings Modal – BOOKING #2 • CONFIRMED
+
+![My Bookings Modal](screenshots/04-my-bookings-modal.png)
+
+---
 
 ### 5. Auth ADMIN – Join StayEase – ADMIN – 1234@gmail.com
 
-### 6. Admin Dashboard – Add New Property dashed gold – 105 Deluxe 2000 – 3 rooms Manage + Delete
+![Auth Admin](screenshots/05-auth-admin.png)
 
-### 7. Admin Add Room Success – 4 Rooms – Room Added! toast
+---
 
-### 8. Admin 6 Rooms – ADMIN can't book - login as CUSTOMER toast – Scalability
+### 6. Admin Dashboard – Add New Property – 3 Rooms
 
-### 9. API /api/rooms JSON – 6 rooms
+![Admin Dashboard](screenshots/06-admin-dashboard-3-rooms.png)
 
-### 10. API /api/bookings JSON – bookings with user and room
+---
+
+### 7. Admin Add Room Success – 4 Rooms – Room Added!
+
+![Admin Room Added](screenshots/07-admin-room-added.png)
+
+---
+
+### 8. Admin 6 Rooms – Role Protection
+
+![Admin 6 Rooms](screenshots/08-admin-6-rooms.png)
+
+---
+
+### 9. API /api/rooms JSON – 6 Rooms
+
+![API Rooms](screenshots/09-api-rooms.png)
+
+---
+
+### 10. API /api/bookings JSON – Bookings with User and Room
+
+![API Bookings](screenshots/10-api-bookings.png)
 
 ## 🎯 Learning Outcomes
 
@@ -365,8 +403,8 @@ Tier 7 – Full Stack Integration – Single Port 9191
 
 ### Test Accounts
 
-- hero20@gmail.com – CUSTOMER
-- 1234@gmail.com – ADMIN
+- `hero20@gmail.com` – CUSTOMER
+- `1234@gmail.com` – ADMIN
 
 ## ⭐ Support
 
